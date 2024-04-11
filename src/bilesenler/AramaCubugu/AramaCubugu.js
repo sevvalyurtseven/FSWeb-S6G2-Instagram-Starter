@@ -20,7 +20,7 @@ const AramaCubugu = (props) => {
           type="text"
           placeholder="Arama"
           value={props.kelime}
-          onChange={props.arama}
+          onChange={(event) => props.arama(event.target.value)}
         />
       </form>
       <div className="social-wrapper">
