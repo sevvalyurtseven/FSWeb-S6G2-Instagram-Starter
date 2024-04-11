@@ -23,6 +23,25 @@ const App = () => {
   const [gonderiler, setGonderiler] = useState(sahteVeri);
   const [aramaKriteri, setAramaKriteri] = useState("");
 
+  const aramaHandler = (value) => {
+    setAramaKriteri(value);
+
+    if (value === "") {
+      setGonderiler(sahteVeri);
+      return;
+    }
+
+    const aramaSonuclari = gonderiler.filter((gonderi) => {
+      if (gonderi.username.includes(value)) {
+        return gonderi;
+      } else {
+        return false;
+      }
+    });
+    console.log("arama sonuclari", aramaSonuclari);
+    setGonderiler(aramaSonuclari);
+  };
+
   const gonderiyiBegen = (gonderiID) => {
     console.log("gonderiyiBegen tetiklendi", gonderiID);
     /*
@@ -51,7 +70,7 @@ const App = () => {
     <div className="App">
       {/* Yukarıdaki metni projeye başladığınızda silin*/}
       {/* AramaÇubuğu ve Gönderiler'i render etmesi için buraya ekleyin */}
-      <AramaCubugu kelime={aramaKriteri} arama={setAramaKriteri} />
+      <AramaCubugu kelime={aramaKriteri} arama={aramaHandler} />
       <Gonderiler gonderiyiBegen={gonderiyiBegen} gonderiler={gonderiler} />
       {/* Her bileşenin hangi proplara ihtiyaç duyduğunu kontrol edin, eğer ihtiyaç varsa ekleyin! */}
     </div>
