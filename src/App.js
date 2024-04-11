@@ -36,6 +36,15 @@ const App = () => {
         - gönderinin idsi "gonderiID" ile eşleşirse, istenen değerlerle yeni bir gönderi nesnesi döndürün.
         - aksi takdirde, sadece gönderi nesnesini değiştirmeden döndürün.
      */
+
+    const yeniGonderiler = gonderiler.map((gonderi) => {
+      if (gonderi.id === gonderiID) {
+        return { ...gonderi, likes: gonderi.likes + 1 };
+      } else {
+        return gonderi;
+      }
+    });
+    setGonderiler(yeniGonderiler);
   };
 
   return (
