@@ -23,7 +23,8 @@ const App = () => {
   const [gonderiler, setGonderiler] = useState(sahteVeri);
   const [aramaKriteri, setAramaKriteri] = useState("");
 
-  const aramaHandler = (value) => {
+  const aramaHandler = (event) => {
+    const { value } = event.target;
     setAramaKriteri(value);
 
     if (value === "") {
@@ -32,7 +33,7 @@ const App = () => {
     }
 
     const aramaSonuclari = gonderiler.filter((gonderi) => {
-      if (gonderi.username.includes(value)) {
+      if (gonderi.username.toLowerCase().includes(value.toLowerCase())) {
         return gonderi;
       } else {
         return false;
@@ -70,7 +71,7 @@ const App = () => {
     <div className="App">
       {/* Yukarıdaki metni projeye başladığınızda silin*/}
       {/* AramaÇubuğu ve Gönderiler'i render etmesi için buraya ekleyin */}
-      <AramaCubugu kelime={aramaKriteri} arama={aramaHandler} />
+      <AramaCubugu aramaKriteri={aramaKriteri} aramaHandler={aramaHandler} />
       <Gonderiler gonderiyiBegen={gonderiyiBegen} gonderiler={gonderiler} />
       {/* Her bileşenin hangi proplara ihtiyaç duyduğunu kontrol edin, eğer ihtiyaç varsa ekleyin! */}
     </div>

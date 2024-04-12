@@ -10,6 +10,7 @@ import {
 import "./AramaCubugu.css";
 
 const AramaCubugu = (props) => {
+  const { aramaKriteri, aramaHandler } = props;
   return (
     <div className="search-bar-wrapper">
       <div className="social">
@@ -19,8 +20,8 @@ const AramaCubugu = (props) => {
         <input
           type="text"
           placeholder="Arama"
-          value={props.kelime}
-          onChange={(event) => props.arama(event.target.value)}
+          value={aramaKriteri}
+          onChange={aramaHandler}
         />
       </form>
       <div className="social-wrapper">
